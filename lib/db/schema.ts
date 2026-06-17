@@ -1,7 +1,9 @@
 import { relations, sql } from "drizzle-orm";
 import {
+  boolean,
   check,
   customType,
+  date,
   integer,
   jsonb,
   pgTable,
@@ -26,6 +28,8 @@ export const placeCategories = [
   "practical",
 ] as const;
 
+// ─── Cities ───────────────────────────────────────────────────────────────────
+
 export const cities = pgTable(
   "cities",
   {
@@ -33,6 +37,7 @@ export const cities = pgTable(
     name: text("name").notNull(),
     slug: text("slug").notNull(),
     country: text("country").notNull(),
+    currency: text("currency").notNull().default("USD"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
@@ -42,12 +47,15 @@ export const cities = pgTable(
   }),
 );
 
+// ─── Users ────────────────────────────────────────────────────────────────────
+
 export const users = pgTable(
   "users",
   {
     id: uuid("id").defaultRandom().primaryKey(),
     email: text("email").notNull(),
     name: text("name").notNull(),
+    image: text("image"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),
@@ -56,6 +64,8 @@ export const users = pgTable(
     emailIdx: uniqueIndex("users_email_idx").on(table.email),
   }),
 );
+
+// ─── Neighborhoods ────────────────────────────────────────────────────────────
 
 export const neighborhoods = pgTable(
   "neighborhoods",
@@ -87,9 +97,37 @@ export const neighborhoods = pgTable(
       table.cityId,
       table.slug,
     ),
-    rentCheck: check("neighborhoods_rent_check", sql`${table.rentMin} <= ${table.rentMax}`),
+    rentCheck: check(
+      "neighborhoods_rent_check",
+      sql`${table.rentMin} <= ${table.rentMax}`,
+    ),
   }),
 );
+
+// ─── Neighborhood Features (matching vector) ──────────────────────────────────
+
+export const neighborhoodFeatures = pgTable("neighborhood_features", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  neighborhoodId: uuid("neighborhood_id")
+    .notNull()
+    .unique()
+    .references(() => neighborhoods.id, { onDelete: "cascade" }),
+  walkability:        real("walkability").notNull().default(0.5),
+  transit:            real("transit").notNull().default(0.5),
+  nightlife:          real("nightlife").notNull().default(0.5),
+  safety:             real("safety").notNull().default(0.5),
+  cafes:              real("cafes").notNull().default(0.5),
+  parks:              real("parks").notNull().default(0.5),
+  youngProfessionals: real("young_professionals").notNull().default(0.5),
+  affordability:      real("affordability").notNull().default(0.5),
+  diversity:          real("diversity").notNull().default(0.5),
+  dataSource: text("data_source").notNull().default("seeded"),
+  updatedAt: timestamp("updated_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
+
+// ─── Places ───────────────────────────────────────────────────────────────────
 
 export const places = pgTable(
   "places",
@@ -120,6 +158,33 @@ export const places = pgTable(
   }),
 );
 
+// ─── Rentals ──────────────────────────────────────────────────────────────────
+
+export const rentals = pgTable("rentals", {
+  id: uuid("id").defaultRandom().primaryKey(),
+  neighborhoodId: uuid("neighborhood_id")
+    .notNull()
+    .references(() => neighborhoods.id, { onDelete: "cascade" }),
+  title: text("title").notNull(),
+  price: integer("price").notNull(),
+  currency: text("currency").notNull(),
+  bedrooms: integer("bedrooms").notNull(),
+  bathrooms: real("bathrooms").notNull(),
+  sqft: integer("sqft"),
+  lat: real("lat").notNull(),
+  lng: real("lng").notNull(),
+  coordinates: geographyPoint("coordinates").notNull(),
+  source: text("source").notNull(),
+  externalUrl: text("external_url").notNull(),
+  availableFrom: date("available_from").notNull(),
+  isActive: boolean("is_active").notNull().default(true),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .defaultNow()
+    .notNull(),
+});
+
+// ─── User Profiles ────────────────────────────────────────────────────────────
+
 export const userProfiles = pgTable("user_profiles", {
   id: uuid("id").defaultRandom().primaryKey(),
   userId: uuid("user_id")
@@ -130,11 +195,31 @@ export const userProfiles = pgTable("user_profiles", {
     .references(() => cities.id, { onDelete: "restrict" }),
   budgetMin: integer("budget_min").notNull(),
   budgetMax: integer("budget_max").notNull(),
-  vibeTags: text("vibe_tags").array().notNull(),
-  interests: text("interests").array().notNull(),
-  movingWith: text("moving_with").notNull(),
-  workType: text("work_type").notNull(),
-  priorities: text("priorities").array().notNull(),
+
+  // Onboarding source fields
+  sourceNeighborhoodName: text("source_neighborhood_name"),
+  sourceCityName:         text("source_city_name"),
+  sourceLikes:            text("source_likes"),
+  sourceDislikes:         text("source_dislikes"),
+
+  // Preference weight vector (0.0–1.0, extracted by Groq)
+  walkabilityWeight:        real("walkability_weight"),
+  transitWeight:            real("transit_weight"),
+  nightlifeWeight:          real("nightlife_weight"),
+  safetyWeight:             real("safety_weight"),
+  cafesWeight:              real("cafes_weight"),
+  parksWeight:              real("parks_weight"),
+  youngProfessionalsWeight: real("young_professionals_weight"),
+  affordabilityWeight:      real("affordability_weight"),
+  diversityWeight:          real("diversity_weight"),
+
+  // Legacy fields kept for backward compat
+  vibeTags:   text("vibe_tags").array().notNull().default([]),
+  interests:  text("interests").array().notNull().default([]),
+  movingWith: text("moving_with").notNull().default("solo"),
+  workType:   text("work_type").notNull().default("office"),
+  priorities: text("priorities").array().notNull().default([]),
+
   commuteTargetNeighborhoodId: uuid("commute_target_neighborhood_id").references(
     () => neighborhoods.id,
     { onDelete: "set null" },
@@ -146,6 +231,8 @@ export const userProfiles = pgTable("user_profiles", {
     .defaultNow()
     .notNull(),
 });
+
+// ─── Neighborhood Matches ─────────────────────────────────────────────────────
 
 export const neighborhoodMatches = pgTable(
   "neighborhood_matches",
@@ -178,6 +265,8 @@ export const neighborhoodMatches = pgTable(
   }),
 );
 
+// ─── Reviews ──────────────────────────────────────────────────────────────────
+
 export const reviews = pgTable(
   "reviews",
   {
@@ -203,6 +292,8 @@ export const reviews = pgTable(
     ),
   }),
 );
+
+// ─── User Saves ───────────────────────────────────────────────────────────────
 
 export const userSaves = pgTable(
   "user_saves",
@@ -241,10 +332,25 @@ export const neighborhoodsRelations = relations(neighborhoods, ({ one, many }) =
     fields: [neighborhoods.cityId],
     references: [cities.id],
   }),
+  features: one(neighborhoodFeatures, {
+    fields: [neighborhoods.id],
+    references: [neighborhoodFeatures.neighborhoodId],
+  }),
   places: many(places),
+  rentals: many(rentals),
   profilesUsingAsCommuteTarget: many(userProfiles),
   matches: many(neighborhoodMatches),
 }));
+
+export const neighborhoodFeaturesRelations = relations(
+  neighborhoodFeatures,
+  ({ one }) => ({
+    neighborhood: one(neighborhoods, {
+      fields: [neighborhoodFeatures.neighborhoodId],
+      references: [neighborhoods.id],
+    }),
+  }),
+);
 
 export const placesRelations = relations(places, ({ one, many }) => ({
   neighborhood: one(neighborhoods, {
@@ -253,6 +359,13 @@ export const placesRelations = relations(places, ({ one, many }) => ({
   }),
   reviews: many(reviews),
   saves: many(userSaves),
+}));
+
+export const rentalsRelations = relations(rentals, ({ one }) => ({
+  neighborhood: one(neighborhoods, {
+    fields: [rentals.neighborhoodId],
+    references: [neighborhoods.id],
+  }),
 }));
 
 export const userProfilesRelations = relations(userProfiles, ({ one, many }) => ({
@@ -313,7 +426,10 @@ export const userSavesRelations = relations(userSaves, ({ one }) => ({
 
 // ─── Inferred Types ───────────────────────────────────────────────────────────
 
-export type City = typeof cities.$inferSelect;
-export type Neighborhood = typeof neighborhoods.$inferSelect;
-export type Place = typeof places.$inferSelect;
-export type UserProfile = typeof userProfiles.$inferSelect;
+export type City                 = typeof cities.$inferSelect;
+export type Neighborhood         = typeof neighborhoods.$inferSelect;
+export type NeighborhoodFeatures = typeof neighborhoodFeatures.$inferSelect;
+export type Place                = typeof places.$inferSelect;
+export type Rental               = typeof rentals.$inferSelect;
+export type UserProfile          = typeof userProfiles.$inferSelect;
+export type NeighborhoodMatch    = typeof neighborhoodMatches.$inferSelect;

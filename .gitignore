@@ -44,6 +44,3 @@ next-env.d.ts
 
 # drizzle
 drizzle/
-
-# project context (not for source control)
-context/
