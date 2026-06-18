@@ -29,24 +29,30 @@ export type NeighborhoodPlace = {
   lng?: number;
 };
 
-export type NeighborhoodRental = {
-  title: string;
-  price: number;
-  currency: string;
-  bedrooms?: number;
-  bathrooms?: number;
-  sqft?: number;
-  source?: string;
-  externalUrl?: string;
-  lat?: number;
-  lng?: number;
-};
-
 export type CommuteEstimate = {
   destination: string;
   minutes: number;
   mode: "walk" | "bike" | "transit" | "drive";
   notes?: string;
+};
+
+export type LlmNeighborhoodProfile = {
+  summary?: string;
+  vibeTags?: string[];
+  bestForTags?: string[];
+  featureNotes?: Record<string, string>;
+  generatedBy?: string;
+  generatedAt?: string;
+};
+
+export type SourcePlaceContext = {
+  sourceNeighborhood?: string;
+  sourceCity?: string;
+  likes?: string;
+  dislikes?: string;
+  preferences?: Record<string, number>;
+  generatedBy?: string;
+  generatedAt?: string;
 };
 
 export const cities = pgTable(
@@ -98,11 +104,14 @@ export const neighborhoodProfiles = pgTable(
     diversity: real("diversity").notNull().default(0.5),
 
     places: jsonb("places").$type<NeighborhoodPlace[]>().notNull().default([]),
-    rentals: jsonb("rentals").$type<NeighborhoodRental[]>().notNull().default([]),
     commuteEstimates: jsonb("commute_estimates")
       .$type<CommuteEstimate[]>()
       .notNull()
       .default([]),
+    llmProfile: jsonb("llm_profile")
+      .$type<LlmNeighborhoodProfile>()
+      .notNull()
+      .default({}),
 
     dataSource: text("data_source").notNull().default("seeded"),
     createdAt: timestamp("created_at", { withTimezone: true })
@@ -160,6 +169,10 @@ export const userProfiles = pgTable("user_profiles", {
     >()
     .notNull()
     .default([]),
+  sourcePlaceContext: jsonb("source_place_context")
+    .$type<SourcePlaceContext>()
+    .notNull()
+    .default({}),
 
   createdAt: timestamp("created_at", { withTimezone: true })
     .defaultNow()

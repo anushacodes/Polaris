@@ -38,8 +38,8 @@ CREATE TABLE IF NOT EXISTS neighborhood_profiles (
   diversity real NOT NULL DEFAULT 0.5,
 
   places jsonb NOT NULL DEFAULT '[]'::jsonb,
-  rentals jsonb NOT NULL DEFAULT '[]'::jsonb,
   commute_estimates jsonb NOT NULL DEFAULT '[]'::jsonb,
+  llm_profile jsonb NOT NULL DEFAULT '{}'::jsonb,
 
   data_source text NOT NULL DEFAULT 'seeded',
   created_at timestamptz NOT NULL DEFAULT now(),
@@ -72,7 +72,17 @@ CREATE TABLE IF NOT EXISTS user_profiles (
   diversity_weight real NOT NULL DEFAULT 0.5,
 
   matched_neighborhoods jsonb NOT NULL DEFAULT '[]'::jsonb,
+  source_place_context jsonb NOT NULL DEFAULT '{}'::jsonb,
 
   created_at timestamptz NOT NULL DEFAULT now(),
   updated_at timestamptz NOT NULL DEFAULT now()
 );
+
+ALTER TABLE neighborhood_profiles
+  ADD COLUMN IF NOT EXISTS llm_profile jsonb NOT NULL DEFAULT '{}'::jsonb;
+
+ALTER TABLE neighborhood_profiles
+  DROP COLUMN IF EXISTS rentals;
+
+ALTER TABLE user_profiles
+  ADD COLUMN IF NOT EXISTS source_place_context jsonb NOT NULL DEFAULT '{}'::jsonb;

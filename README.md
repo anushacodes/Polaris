@@ -41,12 +41,12 @@ npm run db:enrich
 npm run db:fill:groq
 ```
 
-The schema documentation lives in `context/db-schema.md`.
+The schema documentation lives in `db-schema.md`.
 
 ## Main Files
 
 - `components/Onboarding.tsx` - three-step onboarding flow.
-- `app/results/page.tsx` - match results, sliders, map, rentals, and chat.
+- `app/results/page.tsx` - match results, sliders, map, nearby places, and chat.
 - `app/api/extract-preferences/route.ts` - Groq preference extraction.
 - `app/api/user-profile/route.ts` - demo profile persistence and match caching.
 - `app/api/match/route.ts` - deterministic neighborhood matching.

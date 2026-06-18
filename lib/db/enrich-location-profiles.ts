@@ -7,13 +7,12 @@ import { sql } from "drizzle-orm";
 import postgres from "postgres";
 
 import { getTomTomNeighborhoodPois, hasTomTomKey } from "@/lib/enrichment/tomtom";
-import { neighborhoodFeatureVectors, neighborhoodRentals } from "@/lib/db/seed-features";
+import { neighborhoodFeatureVectors } from "@/lib/db/seed-features";
 import { seedCities, type SeedNeighborhood } from "@/lib/db/seed-data";
 import {
   cities,
   neighborhoodProfiles,
   type NeighborhoodPlace,
-  type NeighborhoodRental,
 } from "@/lib/db/schema-minimal";
 
 const COUNTRY_SET_BY_COUNTRY: Record<string, string> = {
@@ -24,8 +23,8 @@ const COUNTRY_SET_BY_COUNTRY: Record<string, string> = {
 };
 
 const CURRENCY_BY_COUNTRY: Record<string, string> = {
-  Canada: "CAD",
-  India: "INR",
+  Canada: "USD",
+  India: "USD",
   "United States": "USD",
   USA: "USD",
 };
@@ -69,21 +68,6 @@ function mergePlaces(
   }
 
   return places.slice(0, 24);
-}
-
-function mapRentals(slug: string): NeighborhoodRental[] {
-  return (neighborhoodRentals[slug] ?? []).map((rental) => ({
-    title: rental.title,
-    price: rental.price,
-    currency: rental.currency,
-    bedrooms: rental.bedrooms,
-    bathrooms: rental.bathrooms,
-    sqft: rental.sqft,
-    source: rental.source,
-    externalUrl: rental.externalUrl,
-    lat: rental.lat,
-    lng: rental.lng,
-  }));
 }
 
 async function main() {
@@ -136,7 +120,6 @@ async function main() {
             : [];
 
         const places = mergePlaces(mapSeedPlaces(neighborhood), apiPlaces);
-        const rentals = mapRentals(neighborhood.slug);
         const walkability =
           featureVector?.walkability ?? normalizeScore(neighborhood.walkabilityScore);
         const transit =
@@ -176,7 +159,6 @@ async function main() {
             affordability,
             diversity,
             places,
-            rentals,
             commuteEstimates: [],
             dataSource,
           })
@@ -204,14 +186,13 @@ async function main() {
               affordability,
               diversity,
               places,
-              rentals,
               dataSource,
               updatedAt: sql`now()`,
             },
           });
 
         console.log(
-          `Saved ${city.name} / ${neighborhood.name}: ${places.length} places, ${rentals.length} rentals`,
+          `Saved ${city.name} / ${neighborhood.name}: ${places.length} places`,
         );
       }
     }

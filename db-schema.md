@@ -39,8 +39,8 @@ CREATE TABLE cities (
 Launch rows:
 
 ```txt
-toronto | Toronto | Canada | CAD
-mumbai  | Mumbai | India | INR
+toronto | Toronto | Canada | USD
+mumbai  | Mumbai | India | USD
 nyc     | New York City | United States | USD
 ```
 
@@ -48,7 +48,7 @@ nyc     | New York City | United States | USD
 
 Stores one complete local-knowledge profile per neighborhood. This table references `cities`.
 
-It intentionally contains the matching vector, places, rentals, and commute snippets so the MVP does not need extra tables.
+It intentionally contains the matching vector, nearby places, and commute snippets so the MVP does not need extra tables.
 
 ```sql
 CREATE TABLE neighborhood_profiles (
@@ -79,7 +79,6 @@ CREATE TABLE neighborhood_profiles (
   diversity real NOT NULL DEFAULT 0.5,
 
   places jsonb NOT NULL DEFAULT '[]'::jsonb,
-  rentals jsonb NOT NULL DEFAULT '[]'::jsonb,
   commute_estimates jsonb NOT NULL DEFAULT '[]'::jsonb,
   llm_profile jsonb NOT NULL DEFAULT '{}'::jsonb,
 
@@ -102,23 +101,6 @@ type NeighborhoodPlace = {
   priceRange?: string;
   vibeTags: string[];
   bestForTags: string[];
-  lat?: number;
-  lng?: number;
-};
-```
-
-`rentals` JSON shape:
-
-```ts
-type NeighborhoodRental = {
-  title: string;
-  price: number;
-  currency: string;
-  bedrooms?: number;
-  bathrooms?: number;
-  sqft?: number;
-  source?: string;
-  externalUrl?: string;
   lat?: number;
   lng?: number;
 };
@@ -218,7 +200,7 @@ type SourcePlaceContext = {
 Inputs:
 
 - `lib/db/seed-data.ts` for planned launch cities, neighborhoods, summaries, tags, and initial places.
-- `lib/db/seed-features.ts` for matching vectors and seeded rentals.
+- `lib/db/seed-features.ts` for matching vectors.
 - TomTom Search API for POI enrichment when `TOMTOM_API_KEY` is set.
 
 Output:
@@ -226,5 +208,4 @@ Output:
 - Upserted `cities`.
 - Upserted `neighborhood_profiles`.
 - API-enriched `places` stored in `neighborhood_profiles.places`.
-- Seeded rentals stored in `neighborhood_profiles.rentals`.
 - Groq-enriched profile context stored in `neighborhood_profiles.llm_profile`.

@@ -77,6 +77,10 @@ function getTomTomKey() {
   return process.env.TOMTOM_API_KEY?.trim();
 }
 
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 async function fetchTomTomSearch(params: {
   query: string;
   lat: number;
@@ -101,15 +105,40 @@ async function fetchTomTomSearch(params: {
   });
 
   const url = `${TOMTOM_SEARCH_URL}/${encodeURIComponent(params.query)}.json?${searchParams}`;
-  const response = await fetch(url);
 
-  if (!response.ok) {
-    const details = await response.text();
-    throw new Error(`TomTom search failed: ${response.status} ${details}`);
+  let attempts = 0;
+  const maxAttempts = 5;
+  let delay = 1000;
+
+  while (attempts < maxAttempts) {
+    attempts++;
+    try {
+      const response = await fetch(url);
+
+      if (response.status === 429) {
+        console.warn(`[TomTom] Rate limited (429). Retrying in ${delay}ms... (attempt ${attempts}/${maxAttempts})`);
+        await sleep(delay);
+        delay *= 2;
+        continue;
+      }
+
+      if (!response.ok) {
+        const details = await response.text();
+        throw new Error(`TomTom search failed: ${response.status} ${details}`);
+      }
+
+      const payload = (await response.json()) as TomTomSearchResponse;
+      return payload.results ?? [];
+    } catch (err) {
+      if (attempts >= maxAttempts) {
+        throw err;
+      }
+      console.warn(`[TomTom] Error: ${err}. Retrying in ${delay}ms... (attempt ${attempts}/${maxAttempts})`);
+      await sleep(delay);
+      delay *= 2;
+    }
   }
-
-  const payload = (await response.json()) as TomTomSearchResponse;
-  return payload.results ?? [];
+  return [];
 }
 
 export async function getTomTomNeighborhoodPois(params: {

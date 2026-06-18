@@ -456,6 +456,536 @@ export const seedCities: SeedCity[] = [
           },
         ],
       },
+      {
+        name: "Mississauga",
+        slug: "mississauga",
+        summary: "A diverse suburban city west of Toronto known for modern residential developments, corporate offices, and waterfront Port Credit charm. Offers an excellent balance between urban amenities and spacious suburban living.",
+        vibeTags: [
+          "diverse",
+          "family-friendly",
+          "suburban",
+          "professional",
+          "multicultural",
+          "modern",
+        ],
+        bestForTags: [
+          "families",
+          "newcomers",
+          "young professionals",
+          "couples",
+          "remote workers",
+        ],
+        rentMin: 1700,
+        rentMax: 2500,
+        walkabilityScore: 50,
+        nightlifeScore: 40,
+        quietScore: 70,
+        transitScore: 70,
+        lat: 43.5890,
+        lng: -79.6441,
+        places: [
+          {
+            name: "Back Road Coffee Roasters",
+            slug: "back-road-coffee-roasters",
+            category: "food",
+            summary: "Independent specialty coffee roasters near Port Credit - fantastic espresso and a great community feel.",
+            priceRange: "$$",
+            vibeTags: ["specialty", "cozy", "artisanal"],
+            bestForTags: ["coffee lovers", "morning coffee", "locals"],
+            lat: 43.5567,
+            lng: -79.5889,
+            reviews: [
+              {
+                rating: 5,
+                body: "Best espresso in Mississauga. Genuinely great roasting quality and super friendly team.",
+                reviewerVibeTags: ["local", "artisanal"],
+                reviewerInterests: ["specialty coffee", "local businesses"],
+              }
+            ]
+          },
+          {
+            name: "The Crooked Cue",
+            slug: "the-crooked-cue",
+            category: "nightlife",
+            summary: "Vibrant upscale billiards hall and pub in Port Credit - great craft beers, local energy, and group events.",
+            priceRange: "$$",
+            vibeTags: ["social", "lively", "fun"],
+            bestForTags: ["drinks with friends", "group hangs", "casual dates"],
+            lat: 43.5555,
+            lng: -79.5855,
+            reviews: [
+              {
+                rating: 4,
+                body: "Amazing atmosphere, good beer selection, and very clean tables. Excellent place to hang out with friends.",
+                reviewerVibeTags: ["social", "lively"],
+                reviewerInterests: ["billiards", "craft beer", "pubs"],
+              }
+            ]
+          },
+          {
+            name: "Jack Darling Memorial Park",
+            slug: "jack-darling-memorial-park",
+            category: "wellness",
+            summary: "Huge waterfront park along Lake Ontario with dog-friendly beaches, splash pads, tennis courts, and picnic areas.",
+            priceRange: "$",
+            vibeTags: ["waterfront", "outdoorsy", "family-friendly"],
+            bestForTags: ["dog owners", "picnics", "weekend walkouts"],
+            lat: 43.5350,
+            lng: -79.6080,
+            reviews: [
+              {
+                rating: 5,
+                body: "Beautiful lake views and the best off-leash dog park in the city. Great place to spend a Saturday afternoon.",
+                reviewerVibeTags: ["outdoorsy", "nature-focused"],
+                reviewerInterests: ["dog walking", "nature", "picnics"],
+              }
+            ]
+          },
+          {
+            name: "Square One Walmart",
+            slug: "square-one-walmart",
+            category: "practical",
+            summary: "Massive supercentre in the heart of Mississauga at Square One - one-stop grocery and retail shopping.",
+            priceRange: "$",
+            vibeTags: ["convenient", "practical"],
+            bestForTags: ["errands", "grocery runs", "newcomer basics"],
+            lat: 43.5930,
+            lng: -79.6430,
+            reviews: [
+              {
+                rating: 4,
+                body: "Super convenient, has absolutely everything you need under one roof. Can get busy on weekends.",
+                reviewerVibeTags: ["practical", "budget-oriented"],
+                reviewerInterests: ["groceries", "home supplies"],
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Markham",
+        slug: "markham",
+        summary: "A family-oriented suburban city north of Toronto known for top-tier schools, historic Main Street Unionville, and a rich multicultural community.",
+        vibeTags: [
+          "family-friendly",
+          "suburban",
+          "multicultural",
+          "upscale",
+          "quiet",
+          "professional",
+        ],
+        bestForTags: [
+          "families",
+          "newcomers",
+          "professionals",
+          "couples",
+          "remote workers",
+        ],
+        rentMin: 1500,
+        rentMax: 2500,
+        walkabilityScore: 50,
+        nightlifeScore: 30,
+        quietScore: 80,
+        transitScore: 60,
+        lat: 43.8561,
+        lng: -79.3370,
+        places: [
+          {
+            name: "Alchemy Coffee",
+            slug: "alchemy-coffee",
+            category: "food",
+            summary: "Popular modern cafe in Unionville known for artisanal brunch, great coffee, and a cozy aesthetic.",
+            priceRange: "$$",
+            vibeTags: ["cozy", "trendy", "brunch"],
+            bestForTags: ["brunch lovers", "morning coffee", "work from cafe"],
+            lat: 43.8680,
+            lng: -79.3120,
+            reviews: [
+              {
+                rating: 5,
+                body: "Their brunch is exceptional and the coffee is always on point. Very cute space.",
+                reviewerVibeTags: ["trendy", "social"],
+                reviewerInterests: ["brunch", "coffee"],
+              }
+            ]
+          },
+          {
+            name: "Rouge River Brewing",
+            slug: "rouge-river-brewing",
+            category: "nightlife",
+            summary: "Local craft brewery near Main Street Unionville - fantastic rotating IPA and sour selections with a relaxed taproom.",
+            priceRange: "$$",
+            vibeTags: ["relaxed", "craft", "local"],
+            bestForTags: ["beer enthusiasts", "casual drinks", "locals"],
+            lat: 43.8741,
+            lng: -79.2635,
+            reviews: [
+              {
+                rating: 5,
+                body: "Best hazy IPAs in the York region. Great local vibe in the taproom.",
+                reviewerVibeTags: ["local", "relaxed"],
+                reviewerInterests: ["craft beer", "local business"],
+              }
+            ]
+          },
+          {
+            name: "Toogood Pond Park",
+            slug: "toogood-pond-park",
+            category: "wellness",
+            summary: "Beautiful 33-hectare park in historic Unionville featuring a large pond, walking trails, and peaceful natural settings.",
+            priceRange: "$",
+            vibeTags: ["scenic", "calm", "nature"],
+            bestForTags: ["nature walks", "photographers", "families"],
+            lat: 43.8740,
+            lng: -79.3100,
+            reviews: [
+              {
+                rating: 5,
+                body: "So peaceful and scenic. The loop walk around the pond is lovely in any season.",
+                reviewerVibeTags: ["nature-loving", "calm"],
+                reviewerInterests: ["walking", "scenery", "nature"],
+              }
+            ]
+          },
+          {
+            name: "First Markham Place",
+            slug: "first-markham-place",
+            category: "practical",
+            summary: "Major Asian shopping centre and food court featuring a wide variety of shops, bubble tea, and international grocers.",
+            priceRange: "$$",
+            vibeTags: ["busy", "diverse", "practical"],
+            bestForTags: ["grocery shopping", "cheap eats", "errands"],
+            lat: 43.8420,
+            lng: -79.3520,
+            reviews: [
+              {
+                rating: 4,
+                body: "Unbelievable selection of Asian food in the food court. A must-visit for grocery shopping.",
+                reviewerVibeTags: ["food-forward", "practical"],
+                reviewerInterests: ["dining", "asian groceries", "errands"],
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Vaughan",
+        slug: "vaughan",
+        summary: "A fast-growing suburban city north of Toronto with direct TTC subway access at VMC, shopping at Vaughan Mills, and modern family neighborhoods.",
+        vibeTags: [
+          "family-friendly",
+          "suburban",
+          "modern",
+          "upscale",
+          "professional",
+          "growing",
+        ],
+        bestForTags: [
+          "families",
+          "professionals",
+          "couples",
+          "newcomers",
+          "remote workers",
+        ],
+        rentMin: 1800,
+        rentMax: 2500,
+        walkabilityScore: 50,
+        nightlifeScore: 40,
+        quietScore: 75,
+        transitScore: 80,
+        lat: 43.8563,
+        lng: -79.5085,
+        places: [
+          {
+            name: "Balzac's Coffee",
+            slug: "balzacs-coffee-vaughan",
+            category: "food",
+            summary: "Artistic specialty cafe in Vaughan Metropolitan Centre - great for workspace and locally roasted coffee.",
+            priceRange: "$$",
+            vibeTags: ["creative", "modern", "spacious"],
+            bestForTags: ["remote workers", "coffee lovers", "work from cafe"],
+            lat: 43.7970,
+            lng: -79.5280,
+            reviews: [
+              {
+                rating: 4,
+                body: "Very cool design, spacious, and right next to the subway station. Perfect for working from home.",
+                reviewerVibeTags: ["professional", "creative"],
+                reviewerInterests: ["coffee", "remote work"],
+              }
+            ]
+          },
+          {
+            name: "Bar 6ix",
+            slug: "bar-6ix",
+            category: "nightlife",
+            summary: "Popular sports bar and grill offering a lively atmosphere, craft beers, cocktails, and weekend entertainment.",
+            priceRange: "$$",
+            vibeTags: ["lively", "social", "energetic"],
+            bestForTags: ["sports fans", "weekend drinks", "nightlife"],
+            lat: 43.7910,
+            lng: -79.5400,
+            reviews: [
+              {
+                rating: 4,
+                body: "Great wings, plenty of screens for the game, and a fun vibe on a Friday night.",
+                reviewerVibeTags: ["social", "lively"],
+                reviewerInterests: ["sports", "drinks", "pub food"],
+              }
+            ]
+          },
+          {
+            name: "Boyd Conservation Park",
+            slug: "boyd-conservation-park",
+            category: "wellness",
+            summary: "Massive natural park along the Humber River valley - perfect for hikes, bird watching, and large outdoor picnics.",
+            priceRange: "$",
+            vibeTags: ["nature", "serene", "outdoorsy"],
+            bestForTags: ["hikers", "families", "picnic outings"],
+            lat: 43.8120,
+            lng: -79.5890,
+            reviews: [
+              {
+                rating: 5,
+                body: "Beautiful trails right in the middle of Vaughan. Feels completely isolated from the suburb.",
+                reviewerVibeTags: ["nature-loving", "active"],
+                reviewerInterests: ["hiking", "picnics", "nature"],
+              }
+            ]
+          },
+          {
+            name: "Vaughan Mills",
+            slug: "vaughan-mills-shopping",
+            category: "practical",
+            summary: "One of the largest outlet malls in Canada, featuring hundreds of retailers, entertainment options, and services.",
+            priceRange: "$$",
+            vibeTags: ["retail-hub", "busy", "practical"],
+            bestForTags: ["shopping runs", "errands", "entertainment"],
+            lat: 43.8250,
+            lng: -79.5380,
+            reviews: [
+              {
+                rating: 4,
+                body: "Unrivaled shopping options. Super practical for buying clothes or home goods, though parking gets busy.",
+                reviewerVibeTags: ["practical", "retail-oriented"],
+                reviewerInterests: ["shopping", "errands"],
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Richmond Hill",
+        slug: "richmond-hill",
+        summary: "An affluent, calm suburban community north of Toronto known for gorgeous parks, Lake Wilcox, top-rated schools, and residential peace.",
+        vibeTags: [
+          "family-friendly",
+          "quiet",
+          "upscale",
+          "suburban",
+          "professional",
+          "residential",
+        ],
+        bestForTags: [
+          "families",
+          "professionals",
+          "couples",
+          "newcomers",
+          "remote workers",
+        ],
+        rentMin: 1500,
+        rentMax: 2400,
+        walkabilityScore: 50,
+        nightlifeScore: 30,
+        quietScore: 85,
+        transitScore: 60,
+        lat: 43.8828,
+        lng: -79.4403,
+        places: [
+          {
+            name: "Covernotes Coffee House",
+            slug: "covernotes-coffee-house",
+            category: "food",
+            summary: "Independent bookstore and cafe inside a historic building - cozy vintage vibe with local coffee and pastries.",
+            priceRange: "$$",
+            vibeTags: ["cozy", "vintage", "relaxed"],
+            bestForTags: ["readers", "solo mornings", "cozy dates"],
+            lat: 43.8790,
+            lng: -79.4380,
+            reviews: [
+              {
+                rating: 5,
+                body: "So cozy! The combination of books, coffee, and history makes this the best cafe in Richmond Hill.",
+                reviewerVibeTags: ["calm", "curious"],
+                reviewerInterests: ["reading", "coffee", "cozy spots"],
+              }
+            ]
+          },
+          {
+            name: "Richmond Hill Tavern",
+            slug: "richmond-hill-tavern",
+            category: "nightlife",
+            summary: "Classic neighborhood pub serving craft beers, pub classics, and live music in a warm setting.",
+            priceRange: "$$",
+            vibeTags: ["warm", "neighborhood-favorite", "relaxed"],
+            bestForTags: ["casual beers", "locals", "live music"],
+            lat: 43.8640,
+            lng: -79.4410,
+            reviews: [
+              {
+                rating: 4,
+                body: "Friendly service, good pub food, and a fantastic neighborhood atmosphere. Been a staple for years.",
+                reviewerVibeTags: ["local", "social"],
+                reviewerInterests: ["pub food", "live music", "casual drinks"],
+              }
+            ]
+          },
+          {
+            name: "Lake Wilcox Park",
+            slug: "lake-wilcox-park",
+            category: "wellness",
+            summary: "Stunning lakeside park with a paved promenade, splash pad, canoe club, and scenic sunset lookouts.",
+            priceRange: "$",
+            vibeTags: ["scenic", "waterfront", "calm"],
+            bestForTags: ["sunset walks", "families", "couples"],
+            lat: 43.9530,
+            lng: -79.4280,
+            reviews: [
+              {
+                rating: 5,
+                body: "The sunset walks here are beautiful. Great trails and lovely lakeside atmosphere.",
+                reviewerVibeTags: ["outdoorsy", "romantic"],
+                reviewerInterests: ["scenery", "walking", "nature"],
+              }
+            ]
+          },
+          {
+            name: "Hillcrest Mall",
+            slug: "hillcrest-mall-shopping",
+            category: "practical",
+            summary: "Clean, modern shopping centre featuring major fashion brands, dining, and practical newcomer services.",
+            priceRange: "$$",
+            vibeTags: ["clean", "practical", "retail-hub"],
+            bestForTags: ["errands", "clothing shopping", "grocery runs"],
+            lat: 43.8600,
+            lng: -79.4300,
+            reviews: [
+              {
+                rating: 4,
+                body: "Nice mall, not too crowded, has great stores and newcomer resources.",
+                reviewerVibeTags: ["practical", "family-friendly"],
+                reviewerInterests: ["shopping", "services"],
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: "Brampton",
+        slug: "brampton",
+        summary: "A rapidly growing multicultural city northwest of Toronto known for family-friendly communities, spacious parks, and relatively affordable renting.",
+        vibeTags: [
+          "family-friendly",
+          "diverse",
+          "multicultural",
+          "suburban",
+          "growing",
+          "affordable",
+        ],
+        bestForTags: [
+          "families",
+          "newcomers",
+          "couples",
+          "budget-conscious renters",
+          "remote workers",
+        ],
+        rentMin: 1300,
+        rentMax: 2500,
+        walkabilityScore: 40,
+        nightlifeScore: 30,
+        quietScore: 75,
+        transitScore: 60,
+        lat: 43.7315,
+        lng: -79.7624,
+        places: [
+          {
+            name: "Segovia Coffee",
+            slug: "segovia-coffee",
+            category: "food",
+            summary: "Specialty coffee shop in downtown Brampton serving Nicaraguan espresso and fresh house-baked pastries.",
+            priceRange: "$$",
+            vibeTags: ["artisanal", "cozy", "specialty"],
+            bestForTags: ["coffee lovers", "work from cafe", "brunch"],
+            lat: 43.6850,
+            lng: -79.7600,
+            reviews: [
+              {
+                rating: 5,
+                body: "Best coffee in Brampton, hands down. Nicaraguan beans are fantastic.",
+                reviewerVibeTags: ["local", "specialty"],
+                reviewerInterests: ["coffee", "bakery"],
+              }
+            ]
+          },
+          {
+            name: "Tracks Brew Pub",
+            slug: "tracks-brew-pub",
+            category: "nightlife",
+            summary: "Cozy downtown Brampton pub known for craft beers, traditional comfort foods, and a welcoming neighborhood feel.",
+            priceRange: "$$",
+            vibeTags: ["cozy", "neighborhood", "warm"],
+            bestForTags: ["drinks with friends", "casual dinner", "locals"],
+            lat: 43.6870,
+            lng: -79.7630,
+            reviews: [
+              {
+                rating: 4,
+                body: "Friendly bartenders, great draft selection, and good wings. Downtown Brampton staple.",
+                reviewerVibeTags: ["local", "casual"],
+                reviewerInterests: ["pub food", "craft beer"],
+              }
+            ]
+          },
+          {
+            name: "Heart Lake Conservation Area",
+            slug: "heart-lake-conservation",
+            category: "wellness",
+            summary: "Huge natural park with swimming, zip lining, boat rentals, and scenic hiking trails around a heart-shaped lake.",
+            priceRange: "$",
+            vibeTags: ["nature", "active", "outdoorsy"],
+            bestForTags: ["families", "hikers", "outdoor activities"],
+            lat: 43.7480,
+            lng: -79.7890,
+            reviews: [
+              {
+                rating: 5,
+                body: "Perfect place for a family weekend trip. Hiking trails are well-maintained and the zip line is super fun.",
+                reviewerVibeTags: ["outdoorsy", "active"],
+                reviewerInterests: ["hiking", "outdoor sports", "family outings"],
+              }
+            ]
+          },
+          {
+            name: "Bramalea City Centre",
+            slug: "bramalea-city-centre-mall",
+            category: "practical",
+            summary: "Spacious shopping centre featuring major department stores, dining, and transit terminal connectivity.",
+            priceRange: "$$",
+            vibeTags: ["retail-hub", "spacious", "practical"],
+            bestForTags: ["shopping", "errands", "newcomers"],
+            lat: 43.7150,
+            lng: -79.7210,
+            reviews: [
+              {
+                rating: 4,
+                body: "Massive selection of stores and services, and the transit hub makes it easy to get anywhere.",
+                reviewerVibeTags: ["practical", "family-friendly"],
+                reviewerInterests: ["shopping", "transit"],
+              }
+            ]
+          }
+        ]
+      },
     ],
   },
 
@@ -486,8 +1016,8 @@ export const seedCities: SeedCity[] = [
           "cafe hopping",
           "nightlife",
         ],
-        rentMin: 65000,
-        rentMax: 130000,
+        rentMin: 800,
+        rentMax: 1600,
         walkabilityScore: 72,
         nightlifeScore: 88,
         quietScore: 38,
@@ -601,8 +1131,8 @@ export const seedCities: SeedCity[] = [
           "remote workers",
           "corporate professionals",
         ],
-        rentMin: 45000,
-        rentMax: 150000,
+        rentMin: 550,
+        rentMax: 1800,
         walkabilityScore: 78,
         nightlifeScore: 45,
         quietScore: 78,
@@ -700,8 +1230,8 @@ export const seedCities: SeedCity[] = [
           "media industry workers",
           "remote workers",
         ],
-        rentMin: 38000,
-        rentMax: 65000,
+        rentMin: 450,
+        rentMax: 800,
         walkabilityScore: 70,
         nightlifeScore: 72,
         quietScore: 48,
@@ -796,8 +1326,8 @@ export const seedCities: SeedCity[] = [
           "solo movers",
           "commuters",
         ],
-        rentMin: 35000,
-        rentMax: 90000,
+        rentMin: 420,
+        rentMax: 1100,
         walkabilityScore: 74,
         nightlifeScore: 55,
         quietScore: 50,
@@ -835,7 +1365,7 @@ export const seedCities: SeedCity[] = [
             slug: "patils-missal",
             category: "food",
             summary:
-              "A Dadar institution for authentic Maharashtrian Missal Pav at ₹40 — the cheapest and most satisfying breakfast in the neighbourhood.",
+              "A Dadar institution for authentic Maharashtrian Missal Pav at about $1 — one of the cheapest and most satisfying breakfasts in the neighborhood.",
             priceRange: "$",
             vibeTags: ["local", "traditional", "budget", "authentic"],
             bestForTags: ["cheap eats", "local food", "breakfast", "regulars"],
@@ -844,7 +1374,7 @@ export const seedCities: SeedCity[] = [
             reviews: [
               {
                 rating: 5,
-                body: "₹40 for the best Missal in Mumbai. This is why Dadar locals never need to go to Bandra.",
+                body: "About $1 for the best Missal in Mumbai. This is why Dadar locals never need to go to Bandra.",
                 reviewerVibeTags: ["local", "budget-conscious"],
                 reviewerInterests: [
                   "local food",
@@ -887,7 +1417,7 @@ export const seedCities: SeedCity[] = [
   // ─── NEW YORK CITY ───────────────────────────────────────────────────────
   {
     name: "New York City",
-    slug: "new-york-city",
+    slug: "nyc",
     country: "United States",
     neighborhoods: [
       {
@@ -1142,6 +1672,306 @@ export const seedCities: SeedCity[] = [
                 reviewerInterests: ["walking", "cycling", "community spaces"],
               },
             ],
+          },
+        ],
+      },
+      {
+        name: "Park Slope",
+        slug: "park-slope",
+        summary:
+          "Leafy brownstone Brooklyn with Prospect Park as the backyard, strong subway access, and a calmer neighborhood rhythm. It is one of NYC's best fits for people who want cafes, parks, safety, and community more than late-night chaos.",
+        vibeTags: ["leafy", "brownstone", "family-friendly", "walkable", "calm"],
+        bestForTags: [
+          "park lovers",
+          "families",
+          "remote workers",
+          "quiet weekends",
+          "coffee shop regulars",
+        ],
+        rentMin: 3000,
+        rentMax: 5200,
+        walkabilityScore: 91,
+        nightlifeScore: 58,
+        quietScore: 78,
+        transitScore: 86,
+        lat: 40.6728,
+        lng: -73.9772,
+        places: [
+          {
+            name: "Prospect Park",
+            slug: "prospect-park",
+            category: "wellness",
+            summary:
+              "Brooklyn's big green reset button — meadows, trails, a lake, weekend picnics, and enough space to make NYC feel breathable.",
+            priceRange: "$",
+            vibeTags: ["green", "community", "outdoorsy"],
+            bestForTags: ["runners", "families", "weekend resets", "dog owners"],
+            lat: 40.6602,
+            lng: -73.969,
+            reviews: [],
+          },
+          {
+            name: "Cafe Regular",
+            slug: "cafe-regular",
+            category: "food",
+            summary:
+              "Tiny, beloved neighborhood cafe with a very local feel — ideal for slow mornings and becoming a regular.",
+            priceRange: "$$",
+            vibeTags: ["cozy", "local", "low-key"],
+            bestForTags: ["coffee lovers", "solo mornings", "remote workers"],
+            lat: 40.6748,
+            lng: -73.9755,
+            reviews: [],
+          },
+        ],
+      },
+      {
+        name: "Upper West Side",
+        slug: "upper-west-side",
+        summary:
+          "Classic Manhattan living between Central Park and Riverside Park, with museums, bookstores, subway access, and a quieter residential feel than downtown. Great if you want walkability without constant nightlife noise.",
+        vibeTags: ["classic", "residential", "cultured", "park-rich", "walkable"],
+        bestForTags: [
+          "museum people",
+          "park lovers",
+          "families",
+          "quiet Manhattan",
+          "car-free living",
+        ],
+        rentMin: 3300,
+        rentMax: 6200,
+        walkabilityScore: 96,
+        nightlifeScore: 50,
+        quietScore: 72,
+        transitScore: 92,
+        lat: 40.787,
+        lng: -73.9754,
+        places: [
+          {
+            name: "Central Park",
+            slug: "central-park-uws",
+            category: "wellness",
+            summary:
+              "The neighborhood's eastern backyard — morning runs, museum walks, weekend picnics, and instant access to NYC's most iconic green space.",
+            priceRange: "$",
+            vibeTags: ["iconic", "green", "calm"],
+            bestForTags: ["runners", "walkers", "families", "weekend resets"],
+            lat: 40.7829,
+            lng: -73.9654,
+            reviews: [],
+          },
+          {
+            name: "Zabar's",
+            slug: "zabars",
+            category: "practical",
+            summary:
+              "A legendary Upper West Side food institution for bagels, smoked fish, coffee, pantry staples, and weekend errands that feel local.",
+            priceRange: "$$",
+            vibeTags: ["classic", "local", "food-forward"],
+            bestForTags: ["grocery runs", "bagel people", "home cooks"],
+            lat: 40.7857,
+            lng: -73.9762,
+            reviews: [],
+          },
+        ],
+      },
+      {
+        name: "East Village",
+        slug: "east-village",
+        summary:
+          "Dense, expressive downtown Manhattan with ramen shops, dive bars, tiny music venues, vintage stores, and late-night energy on nearly every block. Best for people who want city intensity and social life immediately outside the door.",
+        vibeTags: ["downtown", "nightlife", "creative", "dense", "food-heavy"],
+        bestForTags: [
+          "nightlife seekers",
+          "food explorers",
+          "students",
+          "young professionals",
+          "walk-everywhere living",
+        ],
+        rentMin: 3000,
+        rentMax: 5200,
+        walkabilityScore: 99,
+        nightlifeScore: 96,
+        quietScore: 28,
+        transitScore: 91,
+        lat: 40.7265,
+        lng: -73.9815,
+        places: [
+          {
+            name: "Tompkins Square Park",
+            slug: "tompkins-square-park",
+            category: "wellness",
+            summary:
+              "The East Village's central outdoor room — dog runs, people-watching, weekend hangs, and a strong neighborhood identity.",
+            priceRange: "$",
+            vibeTags: ["local", "social", "gritty"],
+            bestForTags: ["dog owners", "people watching", "short walks"],
+            lat: 40.7265,
+            lng: -73.9815,
+            reviews: [],
+          },
+          {
+            name: "Veselka",
+            slug: "veselka",
+            category: "food",
+            summary:
+              "A neighborhood institution for Ukrainian comfort food, late-night meals, and the kind of place people miss when they leave New York.",
+            priceRange: "$$",
+            vibeTags: ["iconic", "casual", "late-night"],
+            bestForTags: ["comfort food", "late dinners", "visiting friends"],
+            lat: 40.7292,
+            lng: -73.9874,
+            reviews: [],
+          },
+        ],
+      },
+      {
+        name: "Long Island City",
+        slug: "long-island-city",
+        summary:
+          "Waterfront Queens with high-rise apartments, fast Manhattan access, skyline parks, and a polished practical feel. It works well for people who want convenience, views, transit, and a newer-building lifestyle.",
+        vibeTags: ["waterfront", "modern", "transit-friendly", "polished", "practical"],
+        bestForTags: [
+          "Manhattan commuters",
+          "new apartment seekers",
+          "waterfront walks",
+          "young professionals",
+          "convenience-first renters",
+        ],
+        rentMin: 3000,
+        rentMax: 5200,
+        walkabilityScore: 88,
+        nightlifeScore: 62,
+        quietScore: 60,
+        transitScore: 95,
+        lat: 40.7447,
+        lng: -73.9485,
+        places: [
+          {
+            name: "Gantry Plaza State Park",
+            slug: "gantry-plaza-state-park",
+            category: "wellness",
+            summary:
+              "A dramatic waterfront park with Manhattan skyline views, piers, lawns, and one of the best sunset walks in Queens.",
+            priceRange: "$",
+            vibeTags: ["scenic", "waterfront", "calm"],
+            bestForTags: ["sunset walks", "runners", "photography", "dates"],
+            lat: 40.7479,
+            lng: -73.9593,
+            reviews: [],
+          },
+          {
+            name: "M. Wells",
+            slug: "m-wells",
+            category: "food",
+            summary:
+              "Creative Queens restaurant with a playful menu and neighborhood-destination energy.",
+            priceRange: "$$$",
+            vibeTags: ["creative", "food-forward", "destination"],
+            bestForTags: ["date nights", "food lovers", "special occasions"],
+            lat: 40.7484,
+            lng: -73.9423,
+            reviews: [],
+          },
+        ],
+      },
+      {
+        name: "Harlem",
+        slug: "harlem",
+        summary:
+          "Historic, musical, community-rooted Upper Manhattan with brownstones, soul food, parks, express subway access, and more space for the money than many downtown neighborhoods.",
+        vibeTags: ["historic", "community", "cultural", "music-rich", "spacious"],
+        bestForTags: [
+          "culture lovers",
+          "budget-aware Manhattan",
+          "community seekers",
+          "park access",
+          "express subway commuters",
+        ],
+        rentMin: 2300,
+        rentMax: 4200,
+        walkabilityScore: 88,
+        nightlifeScore: 70,
+        quietScore: 58,
+        transitScore: 88,
+        lat: 40.8116,
+        lng: -73.9465,
+        places: [
+          {
+            name: "Apollo Theater",
+            slug: "apollo-theater",
+            category: "nightlife",
+            summary:
+              "A legendary music and performance venue anchoring Harlem's cultural life.",
+            priceRange: "$$",
+            vibeTags: ["historic", "music", "iconic"],
+            bestForTags: ["live music", "culture nights", "history lovers"],
+            lat: 40.81,
+            lng: -73.9501,
+            reviews: [],
+          },
+          {
+            name: "Morningside Park",
+            slug: "morningside-park",
+            category: "wellness",
+            summary:
+              "A steep, green neighborhood park with walking paths, playgrounds, and a quieter alternative to Central Park.",
+            priceRange: "$",
+            vibeTags: ["green", "local", "calm"],
+            bestForTags: ["walks", "families", "weekend resets"],
+            lat: 40.805,
+            lng: -73.958,
+            reviews: [],
+          },
+        ],
+      },
+      {
+        name: "Prospect Heights",
+        slug: "prospect-heights",
+        summary:
+          "Compact Brooklyn neighborhood with Prospect Park, museums, brownstones, restaurants, and easy access to multiple train lines. It feels cultured and relaxed without being sleepy.",
+        vibeTags: ["brownstone", "cultured", "park-adjacent", "walkable", "balanced"],
+        bestForTags: [
+          "park lovers",
+          "museum people",
+          "couples",
+          "remote workers",
+          "balanced Brooklyn",
+        ],
+        rentMin: 2900,
+        rentMax: 5000,
+        walkabilityScore: 92,
+        nightlifeScore: 65,
+        quietScore: 70,
+        transitScore: 86,
+        lat: 40.6774,
+        lng: -73.9692,
+        places: [
+          {
+            name: "Brooklyn Museum",
+            slug: "brooklyn-museum",
+            category: "practical",
+            summary:
+              "A major art museum right by the park and Botanic Garden — a rare everyday cultural anchor.",
+            priceRange: "$$",
+            vibeTags: ["cultural", "creative", "local-anchor"],
+            bestForTags: ["museum people", "rainy days", "solo exploring"],
+            lat: 40.6712,
+            lng: -73.9636,
+            reviews: [],
+          },
+          {
+            name: "Brooklyn Botanic Garden",
+            slug: "brooklyn-botanic-garden",
+            category: "wellness",
+            summary:
+              "A serene garden escape with cherry blossoms, conservatories, and one of Brooklyn's best calm resets.",
+            priceRange: "$$",
+            vibeTags: ["green", "calm", "beautiful"],
+            bestForTags: ["quiet weekends", "dates", "nature lovers"],
+            lat: 40.6694,
+            lng: -73.9624,
+            reviews: [],
           },
         ],
       },

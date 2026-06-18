@@ -468,8 +468,7 @@ function ResultsPageContent() {
                 <div className="text-sm text-slate-500 mb-4 font-light">
                   Typical rent range:{" "}
                   <span className="text-slate-900 font-medium">
-                    {citySlug === "mumbai" ? "₹" : citySlug === "toronto" ? "CA$" : "$"}
-                    {selectedNeighborhood.rentMin.toLocaleString()} – {selectedNeighborhood.rentMin === selectedNeighborhood.rentMax ? "" : `${citySlug === "mumbai" ? "₹" : citySlug === "toronto" ? "CA$" : "$"}${selectedNeighborhood.rentMax.toLocaleString()}`}
+                    ${selectedNeighborhood.rentMin.toLocaleString()} – {selectedNeighborhood.rentMin === selectedNeighborhood.rentMax ? "" : `$${selectedNeighborhood.rentMax.toLocaleString()}`}
                   </span>
                   /month
                 </div>
