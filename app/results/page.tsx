@@ -72,10 +72,10 @@ const CATEGORY_LABELS: Record<NearbyPlace["category"], string> = {
 };
 
 const CATEGORY_STYLES: Record<NearbyPlace["category"], string> = {
-  food: "border-amber-100 bg-amber-50 text-amber-600",
-  nightlife: "border-rose-100 bg-rose-50 text-rose-600",
-  wellness: "border-emerald-200 bg-emerald-50 text-emerald-700",
-  practical: "border-teal-100 bg-teal-50 text-teal-600",
+  food: "bg-amber-50 text-amber-600",
+  nightlife: "bg-rose-50 text-rose-600",
+  wellness: "bg-emerald-50 text-emerald-700",
+  practical: "bg-teal-50 text-teal-600",
 };
 
 function ResultsPageContent() {
@@ -345,28 +345,28 @@ function ResultsPageContent() {
   }
 
   return (
-    <div className="h-screen overflow-hidden bg-white text-slate-900 flex flex-col font-sans">
+    <div className="h-screen overflow-hidden bg-slate-50 text-slate-900 flex flex-col font-sans">
       {/* Header */}
-      <header className="border-b border-slate-200 bg-white/85 backdrop-blur-md px-6 py-3 flex items-center justify-between z-30 flex-shrink-0">
+      <header className="bg-white/85 backdrop-blur-md px-6 py-3 flex items-center justify-between z-30 flex-shrink-0 shadow-soft-sm">
         <div className="flex items-center gap-4">
-          <Link href="/" className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-900 text-sm transition-colors">
+          <Link href="/" className="inline-flex items-center gap-1.5 text-slate-500 hover:text-slate-900 text-sm font-medium transition-colors">
             <span aria-hidden>←</span> Home
           </Link>
           <span className="h-5 w-px bg-slate-200" />
           <div className="flex items-center gap-2.5">
-            <span className="flex h-7 w-7 items-center justify-center rounded-lg bg-blue-600 text-white text-xs font-bold shadow-brand">CA</span>
-            <h1 className="text-base font-semibold text-slate-900 tracking-tight">
+            <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-blue-600 text-white text-xs font-bold shadow-brand">CA</span>
+            <h1 className="text-base font-bold text-slate-900 tracking-tight">
               Relocation Dashboard
             </h1>
-            <span className="text-[11px] font-semibold text-blue-700 bg-blue-50 border border-blue-200 px-2 py-0.5 rounded-full uppercase tracking-wide">
+            <span className="text-[11px] font-bold text-blue-700 bg-blue-100 px-2.5 py-0.5 rounded-full uppercase tracking-wide">
               {citySlug}
             </span>
           </div>
         </div>
         {session?.source.sourceNeighborhood && (
-          <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-500">
+          <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
             <span className="text-slate-400">Moving from</span>
-            <span className="font-medium text-slate-700">
+            <span className="font-semibold text-slate-700">
               {session.source.sourceNeighborhood}
               {session.source.sourceCity ? `, ${session.source.sourceCity}` : ""}
             </span>
@@ -377,12 +377,12 @@ function ResultsPageContent() {
       {/* Main Container */}
       <div className="flex-1 flex overflow-hidden min-h-0">
         {/* Left Column: Matches (prominent) + collapsible weights */}
-        <aside className="w-[22rem] border-r border-slate-200 bg-slate-50 flex flex-col flex-shrink-0 min-h-0">
+        <aside className="w-[22rem] bg-slate-50 flex flex-col flex-shrink-0 min-h-0">
           {/* Section: Matches List — the hero of the dashboard */}
           <div className="flex-1 overflow-y-auto px-5 py-5 min-h-0">
             <div className="flex items-center justify-between mb-1">
-              <h2 className="text-base font-semibold text-slate-900 tracking-tight">Your top matches</h2>
-              <span className="text-[11px] font-medium text-slate-500 bg-white border border-slate-200 px-2 py-0.5 rounded-full">
+              <h2 className="text-lg font-bold text-slate-900 tracking-tight">Your top matches</h2>
+              <span className="text-[11px] font-bold text-blue-700 bg-blue-100 px-2.5 py-1 rounded-full">
                 {matches.length} found
               </span>
             </div>
@@ -394,29 +394,32 @@ function ResultsPageContent() {
               {matches.map((match, index) => {
                 const isSelected = match.neighborhoodId === selectedId;
                 const isTop = index === 0;
+                const isTopSelected = isTop && isSelected;
                 return (
                   <button
                     key={match.neighborhoodId}
                     onClick={() => setSelectedId(match.neighborhoodId)}
-                    className={`relative w-full text-left rounded-2xl border transition-all duration-200 ${
+                    className={`relative w-full text-left rounded-3xl transition-all duration-200 ${
                       isTop
                         ? isSelected
-                          ? "border-blue-600 bg-blue-50 shadow-brand ring-1 ring-blue-500/30 p-5 pt-6"
-                          : "border-blue-300 bg-blue-50/60 shadow-soft hover:border-blue-500 p-5 pt-6"
+                          ? "bg-blue-500 text-white shadow-brand-lg scale-[1.01] p-5 pt-6"
+                          : "bg-blue-50 shadow-soft hover:shadow-brand hover:scale-[1.01] ring-1 ring-blue-100 p-5 pt-6"
                         : isSelected
-                          ? "border-blue-500 bg-blue-50 shadow-soft ring-1 ring-blue-500/20 p-4"
-                          : "border-slate-200 bg-white hover:border-blue-300 hover:shadow-soft-sm p-4"
+                          ? "bg-blue-100 shadow-soft ring-2 ring-blue-300 p-4"
+                          : "bg-white hover:bg-blue-50/60 hover:shadow-soft p-4"
                     }`}
                   >
                     {isTop && (
-                      <span className="absolute -top-2.5 left-4 inline-flex items-center gap-1 bg-blue-600 text-white text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-brand">
-                        Best match
+                      <span className="absolute -top-2.5 left-4 inline-flex items-center gap-1 bg-amber-400 text-slate-900 text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full shadow-soft">
+                        ★ Best match
                       </span>
                     )}
                     <div className="flex items-start gap-3">
                       <span
-                        className={`flex-shrink-0 flex items-center justify-center rounded-xl font-bold ${
-                          isTop ? "h-12 w-12 text-lg bg-blue-600 text-white" : "h-9 w-9 text-sm bg-slate-100 text-slate-600 border border-slate-200"
+                        className={`flex-shrink-0 flex items-center justify-center rounded-2xl font-bold ${
+                          isTop
+                            ? isSelected ? "h-12 w-12 text-lg bg-white text-blue-600" : "h-12 w-12 text-lg bg-blue-600 text-white"
+                            : "h-9 w-9 text-sm bg-slate-100 text-slate-600"
                         }`}
                         aria-hidden
                       >
@@ -424,20 +427,20 @@ function ResultsPageContent() {
                       </span>
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center justify-between gap-2">
-                          <h4 className={`font-semibold text-slate-900 truncate ${isTop ? "text-base" : "text-sm"}`}>
+                          <h4 className={`font-bold truncate ${isTop ? "text-base" : "text-sm"} ${isTopSelected ? "text-white" : "text-slate-900"}`}>
                             {match.neighborhoodName}
                           </h4>
                           <div className="flex items-baseline gap-0.5 flex-shrink-0">
-                            <span className={`font-bold tabular-nums ${isTop ? "text-xl text-blue-700" : "text-base text-slate-700"}`}>
+                            <span className={`font-bold tabular-nums ${isTop ? "text-xl" : "text-base"} ${isTopSelected ? "text-white" : isTop ? "text-blue-700" : "text-slate-700"}`}>
                               {match.score}
                             </span>
-                            <span className="text-[10px] font-semibold text-slate-400">%</span>
+                            <span className={`text-[10px] font-semibold ${isTopSelected ? "text-white/70" : "text-slate-400"}`}>%</span>
                           </div>
                         </div>
                         {/* Score bar */}
-                        <div className="mt-2 h-1.5 w-full rounded-full bg-slate-100 overflow-hidden">
+                        <div className={`mt-2 h-2 w-full rounded-full overflow-hidden ${isTopSelected ? "bg-white/25" : "bg-slate-100"}`}>
                           <div
-                            className={`h-full rounded-full ${isTop ? "bg-blue-600" : "bg-blue-400"}`}
+                            className={`h-full rounded-full ${isTopSelected ? "bg-white" : isTop ? "bg-blue-500" : "bg-blue-400"}`}
                             style={{ width: `${match.score}%` }}
                           />
                         </div>
@@ -448,8 +451,8 @@ function ResultsPageContent() {
                       {match.reasons.slice(0, isTop ? 3 : 2).map((reason: string) => (
                         <span
                           key={reason}
-                          className={`text-[10px] px-2 py-0.5 rounded-full border ${
-                            isTop ? "bg-white border-blue-200 text-blue-700" : "bg-slate-50 border-slate-200 text-slate-500"
+                          className={`text-[10px] px-2.5 py-0.5 rounded-full font-medium ${
+                            isTopSelected ? "bg-white/20 text-white" : isTop ? "bg-white text-blue-700" : "bg-slate-100 text-slate-500"
                           }`}
                         >
                           {reason}
@@ -458,7 +461,7 @@ function ResultsPageContent() {
                     </div>
 
                     {isTop && (
-                      <p className="mt-3 text-xs text-slate-600 leading-relaxed line-clamp-3">
+                      <p className={`mt-3 text-xs leading-relaxed line-clamp-3 ${isTopSelected ? "text-white/90" : "text-slate-600"}`}>
                         {match.summary}
                       </p>
                     )}
@@ -469,7 +472,7 @@ function ResultsPageContent() {
           </div>
 
           {/* Section: Lifestyle Weights — de-emphasized & collapsible */}
-          <div className="border-t border-slate-200 bg-white flex-shrink-0">
+          <div className="bg-white flex-shrink-0 shadow-[0_-4px_16px_rgba(60,52,42,0.05)]">
             <button
               type="button"
               onClick={() => setShowWeights((v) => !v)}
@@ -525,25 +528,25 @@ function ResultsPageContent() {
           </section>
 
           {/* Details & Chat Overlay Sidebar */}
-          <section className="w-full md:w-96 border-t md:border-t-0 md:border-l border-slate-200 bg-white overflow-y-auto flex flex-col h-1/2 md:h-full flex-shrink-0 min-h-0">
+          <section className="w-full md:w-96 bg-white overflow-y-auto flex flex-col h-1/2 md:h-full flex-shrink-0 min-h-0 shadow-[-4px_0_20px_rgba(60,52,42,0.05)]">
             {/* Selected Neighborhood Details */}
             {selectedNeighborhood && (
-              <div className="p-6 border-b border-slate-200 bg-blue-50/40">
-                <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-blue-700 uppercase tracking-wider mb-2">
+              <div className="p-6 bg-blue-50/50">
+                <span className="inline-flex items-center gap-1.5 text-[10px] font-bold text-blue-700 uppercase tracking-wider mb-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
                   Now exploring
                 </span>
                 <div className="flex justify-between items-start mb-3 gap-3">
-                  <h2 className="text-2xl font-semibold text-slate-900 leading-tight">{selectedNeighborhood.neighborhoodName}</h2>
-                  <span className="flex-shrink-0 text-xs bg-blue-600 text-white px-2.5 py-1 rounded-full font-bold border border-blue-600 shadow-brand">
+                  <h2 className="text-2xl font-bold text-slate-900 leading-tight">{selectedNeighborhood.neighborhoodName}</h2>
+                  <span className="flex-shrink-0 text-xs bg-blue-600 text-white px-3 py-1 rounded-full font-bold shadow-brand">
                     {selectedNeighborhood.score}% Fit
                   </span>
                 </div>
                 
                 {/* Rent Range Indicator */}
-                <div className="inline-flex items-center gap-2 text-sm text-slate-500 mb-4 bg-white border border-slate-200 rounded-xl px-3 py-2">
+                <div className="inline-flex items-center gap-2 text-sm text-slate-500 mb-4 bg-white rounded-2xl px-3.5 py-2 shadow-soft-sm">
                   <span className="text-[11px] uppercase tracking-wide text-slate-400 font-semibold">Rent</span>
-                  <span className="text-slate-900 font-semibold">
+                  <span className="text-slate-900 font-bold">
                     ${selectedNeighborhood.rentMin.toLocaleString()}{selectedNeighborhood.rentMin === selectedNeighborhood.rentMax ? "" : ` – $${selectedNeighborhood.rentMax.toLocaleString()}`}
                   </span>
                   <span className="text-slate-400 text-xs">/mo</span>
@@ -559,7 +562,7 @@ function ResultsPageContent() {
                     .map((tag: string) => (
                       <span
                         key={tag}
-                        className="text-[10px] bg-slate-50 px-2 py-1 rounded-full border border-slate-200 text-slate-600"
+                        className="text-[10px] bg-blue-100 px-2.5 py-1 rounded-full text-blue-700 font-medium"
                       >
                         {tag}
                       </span>
@@ -568,7 +571,7 @@ function ResultsPageContent() {
 
                 {/* Reasons List */}
                 <div className="space-y-2 mt-4">
-                  <h4 className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider">Top match drivers</h4>
+                  <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Top match drivers</h4>
                   <ul className="space-y-1.5">
                     {selectedNeighborhood.reasons.map((reason: string) => (
                       <li key={reason} className="text-xs text-slate-600 flex items-center gap-2">
@@ -582,9 +585,9 @@ function ResultsPageContent() {
             )}
 
             {/* Nearby Fit Subsection */}
-            <div className="p-6 border-b border-slate-200 flex-1 min-h-[200px] flex flex-col">
+            <div className="p-6 flex-1 min-h-[200px] flex flex-col">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Nearby Fit</h3>
+                <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Nearby Fit</h3>
                 {nearbyPlaces.length > 0 && (
                   <span className="text-[10px] text-slate-500">
                     {nearbyPlaces.length} saved places
@@ -606,12 +609,12 @@ function ResultsPageContent() {
                     {(Object.keys(CATEGORY_LABELS) as NearbyPlace["category"][]).map((category) => (
                       <div
                         key={category}
-                        className={`rounded-xl border px-3 py-2 ${CATEGORY_STYLES[category]}`}
+                        className={`rounded-2xl px-3.5 py-2.5 ${CATEGORY_STYLES[category]}`}
                       >
-                        <div className="text-[10px] font-semibold">
+                        <div className="text-[10px] font-bold">
                           {CATEGORY_LABELS[category]}
                         </div>
-                        <div className="text-lg font-semibold leading-tight">
+                        <div className="text-xl font-bold leading-tight">
                           {placeCategoryCounts[category] ?? 0}
                         </div>
                       </div>
@@ -620,14 +623,14 @@ function ResultsPageContent() {
 
                   {topNearbyTags.length > 0 && (
                     <div>
-                      <h4 className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-2">
+                      <h4 className="text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-2">
                         Good when you want
                       </h4>
                       <div className="flex flex-wrap gap-1.5">
                         {topNearbyTags.map((tag) => (
                           <span
                             key={tag}
-                            className="text-[10px] bg-slate-50 px-2 py-1 rounded-full border border-slate-200 text-slate-600"
+                            className="text-[10px] bg-slate-100 px-2.5 py-1 rounded-full text-slate-600 font-medium"
                           >
                             {tag}
                           </span>
@@ -640,7 +643,7 @@ function ResultsPageContent() {
                     {nearbyPlaces.slice(0, 8).map((place) => (
                       <div
                         key={place.id}
-                        className={`bg-white border-l-4 border border-slate-200 hover:border-blue-200 hover:shadow-soft-sm p-4 rounded-xl transition-all ${
+                        className={`bg-slate-50 hover:bg-white hover:shadow-soft border-l-4 p-4 rounded-2xl transition-all ${
                           place.category === "food"
                             ? "border-l-amber-400"
                             : place.category === "nightlife"
@@ -652,14 +655,14 @@ function ResultsPageContent() {
                       >
                         <div className="flex items-start justify-between gap-3">
                           <div>
-                            <h4 className="text-xs font-medium text-slate-900">
+                            <h4 className="text-xs font-bold text-slate-900">
                               {place.name}
                             </h4>
                             <p className="text-[11px] text-slate-500 mt-1 leading-relaxed">
                               {place.summary}
                             </p>
                           </div>
-                          <span className={`text-[9px] px-2 py-0.5 rounded-full border whitespace-nowrap ${CATEGORY_STYLES[place.category]}`}>
+                          <span className={`text-[9px] px-2 py-0.5 rounded-full whitespace-nowrap font-semibold ${CATEGORY_STYLES[place.category]}`}>
                             {place.category}
                           </span>
                         </div>
@@ -671,21 +674,21 @@ function ResultsPageContent() {
             </div>
 
             {/* Chatbox Panel */}
-            <div className="p-6 bg-slate-50 flex flex-col h-80 border-t border-slate-200 justify-between">
-              <h3 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Ask City Agent</h3>
+            <div className="p-6 bg-slate-100 flex flex-col h-80 justify-between">
+              <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Ask City Agent</h3>
               
               <div className="flex-1 overflow-y-auto text-xs space-y-3 mb-4 pr-1 scrollbar-thin scrollbar-thumb-slate-200">
                 {messages.map((msg, i) => (
-                  <div key={i} className={`p-3 rounded-xl max-w-[85%] leading-relaxed ${
+                  <div key={i} className={`p-3 rounded-2xl max-w-[85%] leading-relaxed ${
                     msg.role === "assistant"
-                      ? "bg-white border border-slate-200 text-slate-700 bubble-ai"
-                      : "bg-blue-50 border border-blue-200 text-blue-700 self-end ml-auto bubble-user"
+                      ? "bg-white text-slate-700 shadow-soft-sm bubble-ai"
+                      : "bg-blue-600 text-white self-end ml-auto bubble-user"
                   }`}>
                     {msg.content}
                   </div>
                 ))}
                 {chatLoading && (
-                  <div className="p-3 bg-white border border-slate-200 text-slate-500 rounded-xl max-w-[85%] bubble-ai">
+                  <div className="p-3 bg-white text-slate-500 rounded-2xl max-w-[85%] shadow-soft-sm bubble-ai">
                     <span className="inline-flex gap-1">
                       <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce" />
                       <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce [animation-delay:0.2s]" />
@@ -701,12 +704,12 @@ function ResultsPageContent() {
                   placeholder={`Ask about ${selectedNeighborhood?.neighborhoodName || "neighborhoods"}...`}
                   value={chatInput}
                   onChange={(e) => setChatInput(e.target.value)}
-                  className="flex-1 bg-white border border-slate-200 focus:border-blue-500 rounded-xl px-3 py-2 text-xs text-slate-900 outline-none transition-colors"
+                  className="flex-1 bg-white border-2 border-transparent focus:border-blue-400 rounded-full px-4 py-2 text-xs text-slate-900 outline-none transition-all shadow-soft-sm"
                 />
                 <button
                   type="submit"
                   disabled={chatLoading}
-                  className="bg-blue-600 hover:bg-blue-500 text-white text-xs font-medium px-4 py-2 rounded-xl transition-all"
+                  className="bg-blue-600 hover:bg-blue-500 hover:scale-105 active:scale-95 text-white text-xs font-bold px-5 py-2 rounded-full transition-all shadow-brand"
                 >
                   Send
                 </button>
