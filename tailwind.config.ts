@@ -9,18 +9,19 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Warm blue palette — primary brand
+        // Comforting sage-green palette — primary brand
+        // (key kept as `blue` so existing `blue-*` classes recolor cohesively)
         blue: {
-          50:  "#EFF6FF",
-          100: "#DBEAFE",
-          200: "#BFDBFE",
-          300: "#93C5FD",
-          400: "#60A5FA",
-          500: "#3B82F6",
-          600: "#2563EB",
-          700: "#1D4ED8",
-          800: "#1E40AF",
-          900: "#1E3A8A",
+          50:  "#F1F8F4",
+          100: "#DCF0E4",
+          200: "#BBE1CB",
+          300: "#90CDA9",
+          400: "#5DB286",
+          500: "#3D9568",
+          600: "#2F7B54",
+          700: "#286244",
+          800: "#224E38",
+          900: "#173A2A",
         },
         // Warm slate — text & surfaces (slightly warm, not cold grey)
         slate: {
@@ -68,16 +69,16 @@ const config: Config = {
           500: "#F43F5E",
           600: "#E11D48",
         },
-        // Brand tokens
+        // Brand tokens — sage green
         brand: {
-          50:   "#EFF6FF",
-          100:  "#DBEAFE",
-          200:  "#BFDBFE",
-          400:  "#60A5FA",
-          500:  "#3B82F6",
-          600:  "#2563EB",
-          700:  "#1D4ED8",
-          glow: "rgba(59,130,246,0.12)",
+          50:   "#F1F8F4",
+          100:  "#DCF0E4",
+          200:  "#BBE1CB",
+          400:  "#5DB286",
+          500:  "#3D9568",
+          600:  "#2F7B54",
+          700:  "#286244",
+          glow: "rgba(61,149,104,0.14)",
         },
       },
       fontFamily: {
@@ -97,8 +98,8 @@ const config: Config = {
         "soft":    "0 4px 16px rgba(14,14,43,0.06), 0 1px 4px rgba(14,14,43,0.04)",
         "soft-lg": "0 16px 48px rgba(14,14,43,0.08), 0 4px 16px rgba(14,14,43,0.05)",
         "soft-xl": "0 24px 64px rgba(14,14,43,0.10), 0 8px 24px rgba(14,14,43,0.06)",
-        "brand":   "0 8px 32px rgba(59,130,246,0.20), 0 2px 8px rgba(59,130,246,0.12)",
-        "brand-lg":"0 16px 48px rgba(59,130,246,0.25), 0 4px 16px rgba(59,130,246,0.15)",
+        "brand":   "0 8px 28px rgba(47,123,84,0.18), 0 2px 8px rgba(47,123,84,0.10)",
+        "brand-lg":"0 16px 44px rgba(47,123,84,0.22), 0 4px 16px rgba(47,123,84,0.13)",
       },
       animation: {
         "fade-up":     "fadeUp 0.5s ease forwards",
@@ -117,8 +118,6 @@ const config: Config = {
         typing:    { from: { width: "0" }, to: { width: "100%" } },
       },
       backgroundImage: {
-        "hero-gradient": "radial-gradient(ellipse 900px 700px at 70% -5%, rgba(59,130,246,0.10) 0%, transparent 65%), radial-gradient(ellipse 700px 500px at -5% 85%, rgba(14,184,166,0.07) 0%, transparent 65%)",
-        "card-gradient": "linear-gradient(135deg, #1a2744 0%, #1e3a8a 50%, #1e40af 100%)",
         "shimmer-gradient": "linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)",
       },
       screens: {

@@ -15,15 +15,15 @@ function GlobeSVG() {
       <circle cx="100" cy="100" r="80" fill="#EFF6FF" stroke="#BFDBFE" strokeWidth="1" />
 
       {/* Grid lines */}
-      <ellipse cx="100" cy="100" rx="40" ry="80" fill="none" stroke="#DBEAFE" strokeWidth="0.75" />
-      <ellipse cx="100" cy="100" rx="80" ry="80" fill="none" stroke="#DBEAFE" strokeWidth="0.75" />
-      <line x1="20" y1="100" x2="180" y2="100" stroke="#DBEAFE" strokeWidth="0.75" />
-      <line x1="100" y1="20" x2="100" y2="180" stroke="#DBEAFE" strokeWidth="0.75" />
-      <ellipse cx="100" cy="100" rx="80" ry="28" fill="none" stroke="#DBEAFE" strokeWidth="0.75" />
+      <ellipse cx="100" cy="100" rx="40" ry="80" fill="none" stroke="#DCF0E4" strokeWidth="0.75" />
+      <ellipse cx="100" cy="100" rx="80" ry="80" fill="none" stroke="#DCF0E4" strokeWidth="0.75" />
+      <line x1="20" y1="100" x2="180" y2="100" stroke="#DCF0E4" strokeWidth="0.75" />
+      <line x1="100" y1="20" x2="100" y2="180" stroke="#DCF0E4" strokeWidth="0.75" />
+      <ellipse cx="100" cy="100" rx="80" ry="28" fill="none" stroke="#DCF0E4" strokeWidth="0.75" />
 
       {/* City dots — live */}
-      <circle cx="116" cy="86" r="5" fill="#3B82F6" opacity="0.9" />
-      <circle cx="116" cy="86" r="9" fill="none" stroke="#3B82F6" strokeWidth="1" opacity="0.25" />
+      <circle cx="116" cy="86" r="5" fill="#3D9568" opacity="0.9" />
+      <circle cx="116" cy="86" r="9" fill="none" stroke="#3D9568" strokeWidth="1" opacity="0.25" />
 
       <circle cx="80"  cy="70" r="4" fill="#14B8A6" opacity="0.9" />
       <circle cx="80"  cy="70" r="7" fill="none" stroke="#14B8A6" strokeWidth="1" opacity="0.25" />
@@ -32,9 +32,9 @@ function GlobeSVG() {
       <circle cx="68"  cy="73" r="7" fill="none" stroke="#F5A623" strokeWidth="1" opacity="0.25" />
 
       {/* City dots — coming soon (muted) */}
-      <circle cx="128" cy="77" r="3" fill="#93C5FD" opacity="0.6" />
-      <circle cx="140" cy="92" r="2.5" fill="#93C5FD" opacity="0.5" />
-      <circle cx="122" cy="95" r="2.5" fill="#93C5FD" opacity="0.5" />
+      <circle cx="128" cy="77" r="3" fill="#90CDA9" opacity="0.6" />
+      <circle cx="140" cy="92" r="2.5" fill="#90CDA9" opacity="0.5" />
+      <circle cx="122" cy="95" r="2.5" fill="#90CDA9" opacity="0.5" />
       <circle cx="112" cy="78" r="2"   fill="#93C5FD" opacity="0.4" />
     </svg>
   );

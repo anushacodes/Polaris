@@ -27,15 +27,12 @@ export default function Hero() {
       className="relative min-h-[100svh] flex flex-col justify-center pt-24 pb-16 px-5 sm:px-6 overflow-hidden"
       aria-labelledby="hero-headline"
     >
-      {/* Background gradients */}
+      {/* Soft, calming backdrop — solid tints, no gradients */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none bg-blue-50/40"
         aria-hidden="true"
       >
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_900px_700px_at_70%_-5%,rgba(59,130,246,0.10)_0%,transparent_65%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_700px_500px_at_-5%_90%,rgba(14,184,166,0.07)_0%,transparent_65%)]" />
-        {/* Warm horizontal light stripe */}
-        <div className="absolute top-1/3 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-100 to-transparent opacity-60" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-40 h-px bg-blue-200/70" />
       </div>
 
       {/* Content */}

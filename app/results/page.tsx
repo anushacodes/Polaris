@@ -72,10 +72,10 @@ const CATEGORY_LABELS: Record<NearbyPlace["category"], string> = {
 };
 
 const CATEGORY_STYLES: Record<NearbyPlace["category"], string> = {
-  food: "border-orange-200 bg-orange-50 text-orange-700",
-  nightlife: "border-purple-200 bg-purple-50 text-purple-700",
+  food: "border-amber-100 bg-amber-50 text-amber-600",
+  nightlife: "border-rose-100 bg-rose-50 text-rose-600",
   wellness: "border-emerald-200 bg-emerald-50 text-emerald-700",
-  practical: "border-sky-200 bg-sky-50 text-sky-700",
+  practical: "border-teal-100 bg-teal-50 text-teal-600",
 };
 
 function ResultsPageContent() {
@@ -401,8 +401,8 @@ function ResultsPageContent() {
                     className={`relative w-full text-left rounded-2xl border transition-all duration-200 ${
                       isTop
                         ? isSelected
-                          ? "border-blue-600 bg-gradient-to-br from-blue-50 to-white shadow-brand ring-1 ring-blue-500/30 p-5 pt-6"
-                          : "border-blue-300 bg-gradient-to-br from-blue-50/70 to-white shadow-soft hover:border-blue-500 p-5 pt-6"
+                          ? "border-blue-600 bg-blue-50 shadow-brand ring-1 ring-blue-500/30 p-5 pt-6"
+                          : "border-blue-300 bg-blue-50/60 shadow-soft hover:border-blue-500 p-5 pt-6"
                         : isSelected
                           ? "border-blue-500 bg-blue-50 shadow-soft ring-1 ring-blue-500/20 p-4"
                           : "border-slate-200 bg-white hover:border-blue-300 hover:shadow-soft-sm p-4"
@@ -528,7 +528,7 @@ function ResultsPageContent() {
           <section className="w-full md:w-96 border-t md:border-t-0 md:border-l border-slate-200 bg-white overflow-y-auto flex flex-col h-1/2 md:h-full flex-shrink-0 min-h-0">
             {/* Selected Neighborhood Details */}
             {selectedNeighborhood && (
-              <div className="p-6 border-b border-slate-200 bg-gradient-to-b from-blue-50/40 to-white">
+              <div className="p-6 border-b border-slate-200 bg-blue-50/40">
                 <span className="inline-flex items-center gap-1.5 text-[10px] font-semibold text-blue-700 uppercase tracking-wider mb-2">
                   <span className="h-1.5 w-1.5 rounded-full bg-blue-600 animate-pulse" />
                   Now exploring
@@ -640,14 +640,14 @@ function ResultsPageContent() {
                     {nearbyPlaces.slice(0, 8).map((place) => (
                       <div
                         key={place.id}
-                        className={`bg-white border-l-4 border border-slate-200 hover:border-blue-200 p-4 rounded-xl transition-all ${
+                        className={`bg-white border-l-4 border border-slate-200 hover:border-blue-200 hover:shadow-soft-sm p-4 rounded-xl transition-all ${
                           place.category === "food"
-                            ? "border-l-orange-400"
+                            ? "border-l-amber-400"
                             : place.category === "nightlife"
-                              ? "border-l-purple-400"
+                              ? "border-l-rose-500"
                               : place.category === "wellness"
                                 ? "border-l-emerald-400"
-                                : "border-l-sky-400"
+                                : "border-l-teal-500"
                         }`}
                       >
                         <div className="flex items-start justify-between gap-3">

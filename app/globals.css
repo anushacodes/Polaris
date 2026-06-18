@@ -4,20 +4,20 @@
 
 /* ── Design Tokens ──────────────────────────────────────────────────────────── */
 :root {
-  /* Warm blue brand */
-  --brand-50:   #EFF6FF;
-  --brand-100:  #DBEAFE;
-  --brand-200:  #BFDBFE;
-  --brand-400:  #60A5FA;
-  --brand-500:  #3B82F6;
-  --brand-600:  #2563EB;
-  --brand-700:  #1D4ED8;
-  --brand-glow: rgba(59,130,246,0.12);
+  /* Comforting sage-green brand */
+  --brand-50:   #F1F8F4;
+  --brand-100:  #DCF0E4;
+  --brand-200:  #BBE1CB;
+  --brand-400:  #5DB286;
+  --brand-500:  #3D9568;
+  --brand-600:  #2F7B54;
+  --brand-700:  #286244;
+  --brand-glow: rgba(61,149,104,0.14);
 
-  /* Warm slate surfaces */
+  /* Warm, soft surfaces with a hint of green */
   --surface:    #FFFFFF;
-  --surface-2:  #F8F8FA;
-  --surface-3:  #F1F1F6;
+  --surface-2:  #F6FAF7;
+  --surface-3:  #EEF5F0;
   --border:     rgba(14,14,43,0.07);
   --border-2:   rgba(14,14,43,0.12);
 
@@ -38,6 +38,7 @@ html {
 body {
   line-height: 1.6;
   color: var(--text-primary);
+  background: var(--surface-2);
 }
 
 /* ── Focus Styles (accessibility) ───────────────────────────────────────────── */
