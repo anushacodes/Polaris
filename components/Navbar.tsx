@@ -19,7 +19,7 @@ function LogoMark({ size = 28 }: { size?: number }) {
           d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6c0 3.5 4.5 8.5 4.5 8.5s4.5-5 4.5-8.5c0-2.5-2-4.5-4.5-4.5z"
           fill="white"
         />
-        <circle cx="8" cy="6" r="1.75" fill="#93C5FD" />
+        <circle cx="8" cy="6" r="1.75" fill="#A6E8BB" />
       </svg>
     </div>
   );
@@ -158,7 +158,7 @@ export default function Navbar() {
             {/* Desktop CTA */}
             <a
               href="#search"
-              className="hidden md:inline-flex items-center gap-2 text-[13px] font-medium bg-slate-900 text-white px-4 py-2 rounded-full hover:bg-slate-700 transition-colors duration-150"
+              className="hidden md:inline-flex items-center gap-2 text-[13px] font-bold bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-500 hover:scale-105 active:scale-95 transition-all duration-150 shadow-brand"
             >
               Try for free
             </a>

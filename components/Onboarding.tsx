@@ -194,11 +194,11 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
   const percent = Math.round(((step - 1) / 2) * 100);
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white border border-slate-200 rounded-3xl p-8 shadow-soft-xl relative overflow-hidden transition-all duration-500">
+    <div className="w-full max-w-2xl mx-auto bg-white rounded-4xl p-8 shadow-soft-xl relative overflow-hidden transition-all duration-500 ring-1 ring-slate-100">
       {/* Progress Bar */}
-      <div className="w-full h-1 bg-slate-100 rounded-full mb-8 overflow-hidden">
+      <div className="w-full h-2 bg-slate-100 rounded-full mb-8 overflow-hidden">
         <div
-          className="h-full bg-blue-600 transition-all duration-300"
+          className="h-full bg-blue-500 rounded-full transition-all duration-300"
           style={{ width: `${percent}%` }}
         />
       </div>
@@ -208,7 +208,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
         {step === 1 && (
           <div className="animate-fadeIn">
             <span className="text-blue-600 text-xs font-semibold uppercase tracking-wider">Step 1 of 3</span>
-            <h2 className="text-3xl font-light text-slate-900 mt-2 mb-6">
+            <h2 className="text-3xl font-bold text-slate-900 mt-2 mb-6">
               Where are you moving?
             </h2>
             <p className="text-slate-500 text-sm mb-6">
@@ -219,15 +219,15 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                 <button
                   key={city.slug}
                   onClick={() => handleCitySelect(city.slug)}
-                  className={`bg-white border-2 rounded-2xl p-5 text-left transition-all duration-300 shadow-sm ${
+                  className={`rounded-3xl p-5 text-left transition-all duration-300 ${
                     destCitySlug === city.slug
-                      ? "border-blue-500 bg-blue-50 scale-[1.02]"
-                      : "border-slate-200 hover:border-blue-200 hover:scale-[1.01]"
+                      ? "bg-blue-500 text-white shadow-brand scale-[1.03] -rotate-1"
+                      : "bg-slate-50 hover:bg-blue-50 hover:scale-[1.02] hover:-rotate-1"
                   }`}
                 >
-                  <h3 className="text-lg font-medium text-slate-900">{city.name}</h3>
-                  <span className="text-xs text-slate-500 block mb-3">{city.country}</span>
-                  <p className="text-xs text-slate-500 leading-relaxed">{city.desc}</p>
+                  <h3 className={`text-lg font-bold ${destCitySlug === city.slug ? "text-white" : "text-slate-900"}`}>{city.name}</h3>
+                  <span className={`text-xs block mb-3 ${destCitySlug === city.slug ? "text-white/80" : "text-slate-500"}`}>{city.country}</span>
+                  <p className={`text-xs leading-relaxed ${destCitySlug === city.slug ? "text-white/90" : "text-slate-500"}`}>{city.desc}</p>
                 </button>
               ))}
             </div>
@@ -238,7 +238,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
         {step === 2 && (
           <div className="animate-fadeIn">
             <span className="text-blue-600 text-xs font-semibold uppercase tracking-wider">Step 2 of 3</span>
-            <h2 className="text-3xl font-light text-slate-900 mt-2 mb-6">
+            <h2 className="text-3xl font-bold text-slate-900 mt-2 mb-6">
               Tell us one place you liked living.
             </h2>
             <div className="space-y-4">
@@ -249,7 +249,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                   placeholder="e.g. Koramangala, Bangalore or Lincoln Park, Chicago"
                   value={sourceNeighborhood}
                   onChange={(e) => setSourceNeighborhood(e.target.value)}
-                  className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-xl px-4 py-3 text-slate-900 outline-none transition-colors"
+                  className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl px-4 py-3 text-slate-900 outline-none transition-all"
                 />
               </div>
               <label className="block text-slate-600 text-sm mb-1.5 font-medium">What did you like about it?</label>
@@ -258,7 +258,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                 placeholder="e.g. Walkable, great coffee shops, easy transit, young crowd, parks nearby..."
                 value={likes}
                 onChange={(e) => setLikes(e.target.value)}
-                className="w-full bg-white border border-slate-200 focus:border-blue-500 rounded-xl p-4 text-slate-900 outline-none transition-colors resize-none leading-relaxed"
+                className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-400 focus:bg-white rounded-2xl p-4 text-slate-900 outline-none transition-all resize-none leading-relaxed"
               />
             </div>
             <p className="text-xs text-slate-500 mt-6 leading-relaxed">
@@ -271,16 +271,16 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
         {step === 3 && (
           <div className="animate-fadeIn">
             <span className="text-blue-600 text-xs font-semibold uppercase tracking-wider">Step 3 of 3</span>
-            <h2 className="text-3xl font-light text-slate-900 mt-2 mb-2">
+            <h2 className="text-3xl font-bold text-slate-900 mt-2 mb-2">
               What&apos;s your monthly budget?
             </h2>
             <p className="text-slate-500 text-sm mb-8">
               Target rent range for your apartments in {currentCityConfig.name}.
             </p>
 
-            <div className="bg-slate-50 border border-slate-200 rounded-2xl p-6 mb-8 text-center">
-              <span className="text-slate-500 text-xs uppercase tracking-wider">Rent range filter</span>
-              <div className="text-3xl font-light text-slate-900 mt-1">
+            <div className="bg-blue-50 rounded-3xl p-6 mb-8 text-center ring-1 ring-blue-100">
+              <span className="text-blue-600 text-xs font-semibold uppercase tracking-wider">Rent range filter</span>
+              <div className="text-3xl font-bold text-slate-900 mt-1">
                 {currentCityConfig.symbol}{budgetMin.toLocaleString()} – {currentCityConfig.symbol}{budgetMax.toLocaleString()}
                 <span className="text-xs text-slate-500 ml-1.5">/month</span>
               </div>
@@ -345,7 +345,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                 disabled={
                   step === 2 && (!sourceNeighborhood.trim() || !likes.trim())
                 }
-                className="bg-blue-600 hover:bg-blue-500 disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-medium px-6 py-3 rounded-full shadow-lg transition-all"
+                className="bg-blue-600 hover:bg-blue-500 hover:scale-105 active:scale-95 disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-bold px-7 py-3 rounded-full shadow-brand transition-all"
               >
                 Continue →
               </button>
@@ -354,7 +354,7 @@ export default function Onboarding({ onComplete }: OnboardingProps) {
                 type="button"
                 onClick={handleSubmit}
                 disabled={loading}
-                className="bg-blue-600 hover:bg-blue-500 text-white text-sm font-medium px-8 py-3 rounded-full shadow-lg active:scale-95 transition-all flex items-center gap-2"
+                className="bg-blue-600 hover:bg-blue-500 hover:scale-105 text-white text-sm font-bold px-8 py-3 rounded-full shadow-brand active:scale-95 transition-all flex items-center gap-2"
               >
                 {loading ? (
                   <>
