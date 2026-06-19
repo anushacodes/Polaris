@@ -5,7 +5,7 @@ import postgres from "postgres";
 
 import * as schema from "@/lib/db/schema-minimal";
 
-const connectionString = process.env.DATABASE_URL;
+const connectionString = process.env.PGDATABASE || "postgres"
 
 if (!connectionString) {
   throw new Error("DATABASE_URL is required for database access.");
