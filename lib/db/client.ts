@@ -9,7 +9,7 @@ import { Pool } from "pg";
 import { awsCredentialsProvider } from "@vercel/functions/oidc";
 import { Signer } from "@aws-sdk/rds-signer";
 
-import * as schema from "@/lib/db/schema-minimal";
+import * as schema from "@/lib/db/schema";
 
 // type DB = PostgresJsDatabase<typeof schema>;
 
@@ -57,6 +57,14 @@ export const db = drizzle(pool, {
   schema,
 });
 
+
+export async function closeDb() {
+  if (!_queryClient) return;
+
+  await _queryClient.end();
+  _queryClient = null;
+  _db = null;
+}
 
 // Lazily initialize the connection so that importing this module does not
 // require DATABASE_URL at build time. The connection is only created on first
