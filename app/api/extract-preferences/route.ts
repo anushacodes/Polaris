@@ -103,6 +103,8 @@ export async function POST(request: Request) {
       },
     });
   } catch (error) {
+    console.error("CRITICAL_EXTRACTION_ERROR:", error);
+    
     const message =
       error instanceof Error
         ? error.message
