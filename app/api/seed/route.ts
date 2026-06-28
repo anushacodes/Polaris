@@ -1,16 +1,13 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db/client"; 
 import { neighborhoodProfiles, cities } from "@/lib/db/schema";
 import { sql } from "drizzle-orm";
 import neighborhoodData from "@/lib/db/neighborhood_profiles.json";
 
-// Force this route to allow up to 60 seconds execution if you are on a Vercel Pro plan
-// (Leave it in anyway, it helps hint to Vercel's infrastructure)
 export const maxDuration = 60; 
 
 export async function POST() {
-  console.log("🌱 Starting clean, batch-optimized database sync...");
-
   try {
     const dbCities = await db.select().from(cities);
     
@@ -34,12 +31,13 @@ export async function POST() {
       const resolvedKey = cityAliasMap[rawCityIdentifier] || rawCityIdentifier;
       const realCityId = liveCityLookup[resolvedKey];
 
-      if (!realCityId) {
-        return null;
-      }
+      if (!realCityId) return null;
 
       const parsedLat = Number(n.lat || 0);
       const parsedLng = Number(n.lng || 0);
+      const minRent = Math.floor(Number(n.rent_min || 0));
+      let maxRent = Math.floor(Number(n.rent_max || 0));
+      if (maxRent < minRent) maxRent = minRent;
 
       return {
         id: n.id || undefined, 
@@ -49,8 +47,8 @@ export async function POST() {
         summary: n.summary || "",
         vibeTags: n.vibe_tags || [],
         bestForTags: n.best_for_tags || [],
-        rentMin: Math.floor(Number(n.rent_min || 0)),
-        rentMax: Math.floor(Number(n.rent_max || 0)),
+        rentMin: minRent,
+        rentMax: maxRent,
         lat: parsedLat,
         lng: parsedLng,
         walkability: n.walkability ?? 0.5,
@@ -70,16 +68,13 @@ export async function POST() {
         dataSource: n.data_source || "seeded",
         coordinates: sql`ST_GeographyFromText(${n.coordinates || `POINT(${parsedLng} ${parsedLat})`})`,
       };
-    }).filter(Boolean);
+    }).filter((item): item is NonNullable<typeof item> => item !== null);
 
     if (processed.length === 0) {
-      return NextResponse.json({ success: true, count: 0, message: "No compatible records found." });
+      return NextResponse.json({ success: true, count: 0 });
     }
 
-    // BREAK INTO BATCHES OF 50 TO PREVENT VERCEL TIMEOUTS
     const chunkSize = 50;
-    let insertedCount = 0;
-
     for (let i = 0; i < processed.length; i += chunkSize) {
       const chunk = processed.slice(i, i + chunkSize);
       
@@ -98,16 +93,11 @@ export async function POST() {
             updatedAt: sql`now()`,
           },
         });
-      
-      insertedCount += chunk.length;
-      console.log(`⏳ Progress: Synced ${insertedCount}/${processed.length} rows...`);
     }
 
-    console.log(`✅ Sync complete. Successfully processed ${processed.length} entries.`);
     return NextResponse.json({ success: true, count: processed.length });
 
-  } catch (error: any) {
-    console.error("❌ Sync failed:", error.message);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ success: false }, { status: 500 });
   }
 }
