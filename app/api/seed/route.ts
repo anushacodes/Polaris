@@ -9,30 +9,34 @@ export const maxDuration = 60;
 
 export async function POST() {
   try {
-    // 1. Fetch live cities to find whatever UUIDs your database currently holds
+    // Get your live database cities
     const dbCities = await db.select().from(cities);
     
-    // Map existing records dynamically by their slug matching the launch set
-    const torontoUuid = dbCities.find(c => c.slug.includes("toronto"))?.id;
-    const mumbaiUuid = dbCities.find(c => c.slug.includes("mumbai"))?.id;
-    const nycUuid = dbCities.find(c => c.slug.includes("nyc") || c.slug.includes("new-york"))?.id;
+    // Find your real UUIDs by checking their unique slugs
+    const torontoUuid = dbCities.find(c => c.slug.toLowerCase().includes("toronto"))?.id;
+    const mumbaiUuid = dbCities.find(c => c.slug.toLowerCase().includes("mumbai"))?.id;
+    const nycUuid = dbCities.find(c => c.slug.toLowerCase().includes("nyc") || c.slug.toLowerCase().includes("new-york"))?.id;
 
     const rawData = neighborhoodData as any[];
     
     const processed = rawData.map((n) => {
-      // 2. Identify target city matching the JSON entry's tracking ID
-      const incomingCityId = n.city_id;
       let realCityId = null;
 
-      // Fallback fallback: Check parent city context clues from the file to resolve ID mismatches
-      if (incomingCityId === "ee2cafe6-491a-449f-9da8-ece7fbf60b59") {
-        realCityId = nycUuid;
-      } else if (n.city_slug?.includes("toronto") || n.city?.includes("toronto")) {
+      // 1. First priority: Check explicit string values in the JSON fields
+      const rawCityText = ((n.city_name || n.city || n.city_slug || "") as string).toLowerCase();
+      
+      if (rawCityText.includes("toronto")) {
         realCityId = torontoUuid;
-      } else if (n.city_slug?.includes("mumbai") || n.city?.includes("mumbai")) {
+      } else if (rawCityText.includes("mumbai")) {
         realCityId = mumbaiUuid;
+      } else if (rawCityText.includes("nyc") || rawCityText.includes("new-york") || n.slug.includes("jersey") || n.slug.includes("chelsea") || n.slug.includes("williamsburg") || n.slug.includes("astoria") || n.slug.includes("bushwick") || n.slug.includes("harlem") || n.slug.includes("greenpoint") || n.slug.includes("sunnyside")) {
+        realCityId = nycUuid;
       } else {
-        realCityId = nycUuid; // Fallback catch-all for remaining regional inputs
+        // 2. Secondary fallback: If text flags aren't there, check the raw teammate UUID values
+        const incomingUuid = n.city_id;
+        if (incomingUuid === "ee2cafe6-491a-449f-9da8-ece7fbf60b59") {
+          realCityId = nycUuid;
+        }
       }
 
       if (!realCityId) return null;
