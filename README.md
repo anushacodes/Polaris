@@ -10,6 +10,14 @@ The current launch cities are:
 
 The app was built for a Vercel v0 + AWS database hackathon, with Aurora PostgreSQL used as the AWS database layer.
 
+## Architectural Diagram
+
+
+<img width="670" height="542" alt="Screenshot 2026-06-29 at 10 16 17 AM" src="https://github.com/user-attachments/assets/46bda584-62c7-4e91-bcfc-043b664197e6" />
+
+## Database Schema (AWS Aurora Vercel integration)
+<img width="744" height="551" alt="Screenshot 2026-06-29 at 10 18 46 AM" src="https://github.com/user-attachments/assets/2b79bc87-e342-42de-8007-5ede2cda4936" />
+
 ## What It Does
 
 Polaris guides the user through a short onboarding flow:
